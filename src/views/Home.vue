@@ -1,6 +1,9 @@
 <template>
   <main>
     <section class="container">
+      <router-link class="theme-button" to="/theme-setting"
+        >切換主題</router-link
+      >
       <h1>你最喜歡以下哪種寵物？</h1>
       <div class="wrapper">
         <div class="inputs">
@@ -96,6 +99,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.theme-button {
+  display: block;
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  font-size: 20px;
+  padding: 10px 10px;
+  background: black;
+  color: white;
+  border-radius: 5px;
+}
+
 .wrapper {
   max-width: 1000px;
   display: flex;
