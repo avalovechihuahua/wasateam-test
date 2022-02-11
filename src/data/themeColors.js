@@ -1,5 +1,6 @@
 export default [
   {
+    id: 0,
     layout: {
       backgroundColor: "#9AEBA3",
       color: "#012030",
@@ -10,6 +11,7 @@ export default [
     },
   },
   {
+    id: 1,
     layout: {
       backgroundColor: "#72f2eb",
       color: "#3f7c85",
@@ -20,6 +22,7 @@ export default [
     },
   },
   {
+    id: 2,
     layout: {
       backgroundColor: "#F2CB05",
       color: "#1D594E",
