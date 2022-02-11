@@ -1,5 +1,7 @@
 const path = require("path");
+
 const PrerenderSpaPlugin = require("prerender-spa-plugin");
+
 const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
@@ -9,7 +11,7 @@ module.exports = {
   productionSourceMap: false,
   css: {
     loaderOptions: {
-      sass: {
+      scss: {
         prependData: `
           @use "@/assets/style/abstract/_index.scss" as *;
         `,
@@ -25,7 +27,7 @@ module.exports = {
           staticDir: path.join(__dirname, "dist"),
           // 預渲染路由
           // 如有動態param請完整定義在這裡
-          routes: ["/", "/theme"],
+          routes: ["/", "/theme-setting"],
         })
       );
     }

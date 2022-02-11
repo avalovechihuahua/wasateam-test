@@ -1,32 +1,31 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" :style="appStyleObj">
     <router-view />
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      appStyleObj: {
+        backgroundColor: "#9AEBA3",
+        color: "#012030",
+      },
+    };
+  },
+};
+</script>
+
 <style lang="scss">
+@import "@/assets/style/main.scss";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  width: 100%;
+  height: 100vh;
+  background-size: 10px 10px;
+  background-image: linear-gradient(to left, #e4e4e4 1px, transparent 1px),
+    linear-gradient(to bottom, #e4e4e4 1px, transparent 1px);
 }
 </style>

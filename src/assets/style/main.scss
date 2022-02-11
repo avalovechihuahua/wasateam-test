@@ -1,14 +1,15 @@
-@forward './base/reset';
-@forward './animation/v-transition';
-@forward './animation/index';
-@use './base/font-face';
-@use './abstract/mixins' as f;
-@use './abstract/variables' as v;
+@forward "./base/reset";
+@forward "./animation/v-transition";
+@forward "./animation/index";
+@use "./base/font-face";
+@use "./abstract/mixins" as f;
+@use "./abstract/variables" as v;
 
 body {
   min-width: 320px;
   overflow: auto;
-  font-family: Roboto, Arial, 'Microsoft JhengHei Modify', 'Microsoft JhengHei', PingFangTC, sans-serif;
+  font-family: Roboto, Arial, "Microsoft JhengHei Modify", "Microsoft JhengHei",
+    PingFangTC, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -62,4 +63,19 @@ button {
   @include f.screen(md) {
     display: block !important;
   }
+}
+
+.container {
+  width: 80%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 150px 30px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 12px;
 }
