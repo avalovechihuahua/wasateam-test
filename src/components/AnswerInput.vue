@@ -96,6 +96,7 @@ export default {
     this.pets = await petQuery();
     // 預設第一個選項為初始值
     this.selectedPet = this.pets[0].name;
+    this.$emit("setPets", this.pets);
     this.updateSelectedPet();
   },
 };

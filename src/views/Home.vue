@@ -1,8 +1,11 @@
 <template>
   <main>
     <section class="container">
-      <router-link class="theme-button" to="/theme-setting"
-        >切換主題</router-link
+      <router-link
+        class="theme-button"
+        to="/theme-setting"
+        :style="buttonStyleObj"
+        >切換主題頁面</router-link
       >
       <h1>你最喜歡以下哪種寵物？</h1>
       <div class="wrapper">
@@ -18,6 +21,7 @@
           <AnswerInput
             :type="selected"
             @updateSelectedPet="updateSelectedPet"
+            @setPets="setPets"
           />
         </div>
         <div class="pictures">
@@ -35,7 +39,7 @@
 </template>
 
 <script>
-import petQuery from "@/requests/petQuery.js";
+import themeColors from "@/data/themeColors";
 import AnswerInput from "@/components/AnswerInput.vue";
 
 export default {
@@ -64,6 +68,12 @@ export default {
     };
   },
   computed: {
+    themeID() {
+      return this.$store.getters.themeID;
+    },
+    buttonStyleObj() {
+      return themeColors[this.themeID].button;
+    },
     inputType() {
       let type;
       switch (this.selected) {
@@ -90,10 +100,9 @@ export default {
         (el) => el.name === this.selectedPet
       ).imgList;
     },
-  },
-
-  async beforeMount() {
-    this.pets = await petQuery();
+    setPets(val) {
+      this.pets = val;
+    },
   },
 };
 </script>
@@ -106,9 +115,16 @@ export default {
   top: 100px;
   font-size: 20px;
   padding: 10px 10px;
-  background: black;
-  color: white;
+  background-color: #1d594e;
+  color: #f2cb05;
   border-radius: 5px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+  transition: transform 200ms ease box-shadow 200ms ease;
+
+  &:hover {
+    box-shadow: 3px 3px 2px 0px rgba(0, 0, 0, 0.2);
+    transform: translate(-2px, -2px);
+  }
 }
 
 .wrapper {

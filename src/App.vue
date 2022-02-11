@@ -1,19 +1,23 @@
 <template>
-  <div id="app" :style="appStyleObj">
+  <div id="app" :style="layoutStyleObj">
     <router-view />
   </div>
 </template>
 
 <script>
+import themeColors from "@/data/themeColors";
 export default {
   name: "App",
-  data() {
-    return {
-      appStyleObj: {
-        backgroundColor: "#9AEBA3",
-        color: "#012030",
-      },
-    };
+  computed: {
+    themeID() {
+      return this.$store.getters.themeID;
+    },
+    layoutStyleObj() {
+      return themeColors[this.themeID].layout;
+    },
+  },
+  beforeMount() {
+    this.$store.commit("setThemeID", 0);
   },
 };
 </script>
