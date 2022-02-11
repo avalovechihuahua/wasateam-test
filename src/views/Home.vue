@@ -9,16 +9,18 @@
         <div class="inputs">
           <div class="input-control">
             <label for="inputType">輸入類型: </label>
-            <select name="type" id="inputType" v-model="selected">
+            <select name="type" id="inputType" v-model="selectType">
               <option value="text">text</option>
               <option value="radio">radio</option>
               <option value="select">select</option>
             </select>
           </div>
-          <AnswerInput
-            :type="selected"
-            @updateSelectedPet="updateSelectedPet"
-            @setPets="setPets"
+          <SelectInput
+            input-name="pet"
+            :type="selectType"
+            :contents="selectInputContents"
+            :defaultOpt="selectInputDefault"
+            @update-selected-opt="updateSelectedPet"
           />
         </div>
         <div class="pictures">
@@ -36,8 +38,9 @@
 </template>
 
 <script>
+import petQuery from "@/requests/petQuery.js";
 import theme from "@/data/themes";
-import AnswerInput from "@/components/AnswerInput.vue";
+import SelectInput from "@/components/SelectInput.vue";
 
 export default {
   name: "Home",
@@ -54,52 +57,41 @@ export default {
     };
   },
   components: {
-    AnswerInput,
+    SelectInput,
   },
   data() {
     return {
-      selected: "text",
-      petPictures: [],
+      selectType: "text",
       selectedPet: null,
       pets: null,
     };
   },
   computed: {
+    selectInputContents() {
+      return this.pets ? this.pets : [];
+    },
+    selectInputDefault() {
+      return this.pets ? this.pets[0].name : "";
+    },
+    petPictures() {
+      if (!this.pets) return;
+      return this.pets.find((el) => el.name === this.selectedPet).imgList;
+    },
     themeID() {
       return this.$store.getters.themeID;
     },
     buttonStyleObj() {
       return theme.colors[this.themeID].button;
     },
-    inputType() {
-      let type;
-      switch (this.selected) {
-        case "text":
-          type = 0;
-          break;
-        case "radio":
-          type = 1;
-          break;
-        case "select":
-          type = 2;
-          break;
-        default:
-          console.error("沒有該輸入類型!");
-          break;
-      }
-      return type;
-    },
   },
   methods: {
     updateSelectedPet(val) {
       this.selectedPet = val;
-      this.petPictures = this.pets.find(
-        (el) => el.name === this.selectedPet
-      ).imgList;
     },
-    setPets(val) {
-      this.pets = val;
-    },
+  },
+  async beforeMount() {
+    this.pets = await petQuery();
+    this.selectedPet = this.pets[0].name;
   },
 };
 </script>
