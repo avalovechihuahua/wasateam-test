@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import themeColors from "@/data/themeColors";
+import theme from "@/data/themes";
 export default {
   name: "ThemeSetting",
   metaInfo() {
@@ -43,16 +43,16 @@ export default {
   },
   computed: {
     themes() {
-      return themeColors;
+      return theme.colors;
     },
     themeLength() {
-      return themeColors.length;
+      return theme.colors.length;
     },
     themeID() {
       return this.$store.getters.themeID;
     },
     buttonStyleObj() {
-      return themeColors[this.themeID].button;
+      return theme.colors[this.themeID].button;
     },
   },
   methods: {

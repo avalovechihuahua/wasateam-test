@@ -12,7 +12,6 @@ export default new Vuex.Store({
       state.themeID = payload;
     },
   },
-  actions: {},
   getters: {
     themeID: (state) => {
       return state.themeID;
