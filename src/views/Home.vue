@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import themeColors from "@/data/themeColors";
+import theme from "@/data/themes";
 import AnswerInput from "@/components/AnswerInput.vue";
 
 export default {
@@ -69,7 +69,7 @@ export default {
       return this.$store.getters.themeID;
     },
     buttonStyleObj() {
-      return themeColors[this.themeID].button;
+      return theme.colors[this.themeID].button;
     },
     inputType() {
       let type;

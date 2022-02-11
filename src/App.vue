@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import themeColors from "@/data/themeColors";
+import theme from "@/data/themes";
 export default {
   name: "App",
   computed: {
@@ -13,11 +13,11 @@ export default {
       return this.$store.getters.themeID;
     },
     layoutStyleObj() {
-      return themeColors[this.themeID].layout;
+      return theme.colors[this.themeID].layout;
     },
   },
   beforeMount() {
-    this.$store.commit("setThemeID", 0);
+    this.$store.commit("setThemeID", theme.defualtColorId);
   },
 };
 </script>
