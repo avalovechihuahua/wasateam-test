@@ -76,17 +76,13 @@ export default {
     };
   },
   watch: {
-    defaultOpt(val) {
-      if (val) {
-        this.selected = this.defaultOpt;
+    contents(val) {
+      if (val.length !== 0) {
+        this.selected = this.contents[0].name;
       }
     },
   },
   computed: {
-    defaultOpt() {
-      if (this.contents.length === 0) return;
-      return this.contents[0].name;
-    },
     textInputPlaceholder() {
       if (!this.contents) return;
       let str = "請輸入";
