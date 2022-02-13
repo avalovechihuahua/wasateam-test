@@ -19,7 +19,6 @@
             input-name="pet"
             :type="selectType"
             :contents="selectInputContents"
-            :defaultOpt="selectInputDefault"
             @update-selected-opt="updateSelectedPet"
           />
         </div>
@@ -69,9 +68,6 @@ export default {
   computed: {
     selectInputContents() {
       return this.pets ? this.pets : [];
-    },
-    selectInputDefault() {
-      return this.pets ? this.pets[0].name : "";
     },
     petPictures() {
       if (!this.pets) return;

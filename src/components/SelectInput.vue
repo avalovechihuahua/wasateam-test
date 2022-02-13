@@ -64,9 +64,6 @@ export default {
       type: Array,
       required: true,
     },
-    defaultOpt: {
-      required: true,
-    },
     inputName: {
       type: String,
       required: true,
@@ -85,6 +82,10 @@ export default {
     },
   },
   computed: {
+    defaultOpt() {
+      if (this.contents.length === 0) return;
+      return this.contents[0].name;
+    },
     textInputPlaceholder() {
       if (!this.contents) return;
       let str = "請輸入";
