@@ -2,13 +2,13 @@
   <div>
     <div v-if="type === 'text'">
       <div class="input-controls">
-        <label>答案：</label>
+        <label for="textInput">答案：</label>
         <input
+          id="textInput"
           type="text"
           :placeholder="textInputPlaceholder"
           v-model.trim="selected"
           @input="updateSelectedOpt"
-          ref="textInput"
         />
       </div>
     </div>
@@ -33,8 +33,9 @@
     </div>
     <div v-else>
       <div class="input-controls">
-        <label>答案：</label>
+        <label for="selectInput">答案：</label>
         <select
+          id="selectInput"
           :name="inputName"
           v-model="selected"
           @change="updateSelectedOpt"
