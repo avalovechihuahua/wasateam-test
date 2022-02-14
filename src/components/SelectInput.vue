@@ -101,17 +101,12 @@ export default {
     updateSelectedOpt() {
       // 擋掉使用者在 text input 時輸入非正確類型的資料
       if (this.type === "text") {
-        let flag = false;
-        const parseContent = JSON.parse(JSON.stringify(this.contents));
-        for (let content of parseContent) {
-          if (!flag) {
-            flag = content.name === this.selected ? true : false;
-          }
-        }
-        if (!flag) return;
+        const enableEmit = this.contents.some(
+          (content) => content.name === this.selected
+        );
+        if (!enableEmit) return;
       }
 
-      // 向外部更新被選取選項
       this.$emit("update-selected-opt", this.selected);
     },
   },
